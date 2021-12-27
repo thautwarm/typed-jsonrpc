@@ -36,6 +36,8 @@ def initialize_request(rpc: Rpc, params: Request):
 lsp1 = start_lsp_server(host=..., port=...)
 lsp2 = start_lsp_server(host=..., port=...)
 
-run_lsp(ls, lsp1)
-run_lsp(ls, lsp2)
+simple_async.run_until_complete(
+    simple_async.gather(
+        run_lsp(ls, lsp1), run_lsp(ls, lsp2)))
+
 ```
